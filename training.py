@@ -98,7 +98,7 @@ for epoch in range(epochs):
 # Save the trained model and log its artifacts to MLflow
 # mlflow.pytorch.save_model(model, "model")
 
-subprocess.run(['gsutil', '-m', 'cp', '-r', 'mlruns', 'gs://models-mlflow'])
+
 
 print("Finished training. Saving model...")
 
@@ -124,8 +124,7 @@ outputs = pd.DataFrame({ 'rating': [config.id2label[c] for c in classes], 'confi
 
 # Saving the model
 signature = infer_signature(sample, outputs)
-# model_path = 'numeric_classifier'
-model_path = 'gs://models-mlflow'
+model_path = 'numeric_classifier'
 model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path)
 
@@ -144,3 +143,6 @@ mlflow.pyfunc.log_model('classifier',
                         artifacts=artifacts, 
                         signature=signature,
                         registered_model_name='bert-rating-classification')
+
+# Copying everything to the bucket
+subprocess.run(['gsutil', '-m', 'cp', '-r', 'mlruns', 'gs://models-mlflow'])
