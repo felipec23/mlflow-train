@@ -116,7 +116,7 @@ outputs = pd.DataFrame({ 'rating': [config.id2label[c] for c in classes], 'confi
 # Saving the model
 signature = infer_signature(sample, outputs)
 # model_path = 'numeric_classifier'
-model_path = '/gcs/models-mlflow'
+model_path = 'gs://models-mlflow'
 model.save_pretrained(model_path)
 tokenizer.save_pretrained(model_path)
 
