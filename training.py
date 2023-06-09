@@ -42,7 +42,7 @@ train_labels = df["label"].astype('int').tolist()  # Your training labels
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Set the hyperparameters
-epochs = 2
+epochs = 1
 batch_size = 16
 learning_rate = 2e-5
 
