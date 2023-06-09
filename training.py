@@ -11,15 +11,16 @@ from mlflow.models.signature import infer_signature
 import os, pathlib
 from mlflow.pyfunc import PythonModel, PythonModelContext
 from typing import Dict
+import subprocess
 
 # Set up MLflow experiment
 mlflow.set_experiment("distilbert_text_classifier2")
 
-# Set the new tracking URI
-new_tracking_uri = "gs://models-mlflow"
+# # Set the new tracking URI
+# new_tracking_uri = "gs://models-mlflow"
 
-# Set the tracking URI
-mlflow.set_tracking_uri(new_tracking_uri)
+# # Set the tracking URI
+# mlflow.set_tracking_uri(new_tracking_uri)
 
 
 from bert_wrapper import BertTextClassifier
@@ -97,6 +98,7 @@ for epoch in range(epochs):
 # Save the trained model and log its artifacts to MLflow
 # mlflow.pytorch.save_model(model, "model")
 
+subprocess.run(['gsutil', '-m', 'cp', '-r', 'mlruns', 'gs://models-mlflow'])
 
 print("Finished training. Saving model...")
 
