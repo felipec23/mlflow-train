@@ -15,6 +15,13 @@ from typing import Dict
 # Set up MLflow experiment
 mlflow.set_experiment("distilbert_text_classifier2")
 
+# Set the new tracking URI
+new_tracking_uri = "gs://models-mlflow"
+
+# Set the tracking URI
+mlflow.set_tracking_uri(new_tracking_uri)
+
+
 from bert_wrapper import BertTextClassifier
 
 
