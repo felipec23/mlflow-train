@@ -27,7 +27,7 @@ print('Classes:', config.label2id.keys())
 
 
 # Read sentences from .csv file, start with 1st row
-df = pd.read_excel('/gcs/training-data-mlflow/ready/2502_sentences.xlsx', header=0, names=['label', 'sentence'])
+df = pd.read_excel('gs://training-data-mlflow/ready/2502_sentences.xlsx', header=0, names=['label', 'sentence'])
 # df = pd.read_excel('/Users/estebanfelipecaceresgelvez/Documents/tesis/datasets/2502_sentences.xlsx', header=0, names=['label', 'sentence'])
 
 
